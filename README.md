@@ -37,12 +37,17 @@
 1. **Install MySQL** and create a database for the project:
 ```sql
   CREATE DATABASE ejbtest;
-  CREATE TABLE users (
+  USE ejbtest;
+
+  CREATE TABLE IF NOT EXISTS users (
       id INT AUTO_INCREMENT PRIMARY KEY,
-      username VARCHAR(255) NOT NULL UNIQUE,
-      email VARCHAR(255) NOT NULL UNIQUE,
-      password_hash VARCHAR(255) NOT NULL,
-      is_admin BOOLEAN NOT NULL DEFAULT FALSE
+      username VARCHAR(50) NOT NULL UNIQUE,
+      email VARCHAR(100) NOT NULL UNIQUE,
+      password_hash VARCHAR(128) NOT NULL,
+      is_active BOOLEAN DEFAULT true,
+      is_admin BOOLEAN DEFAULT false,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
   );
 ```
 2. Configure database connection in com.util.stateless DBConnection.JAVA
