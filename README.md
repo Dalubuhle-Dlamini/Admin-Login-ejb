@@ -3,7 +3,7 @@
 
 ## Overview
 
-`Admin-Login-ejb` is a Java EE-based web application for managing users. It includes functionalities for registering, logging in, and updating user details. The application uses MySQL for data persistence and includes role-based access control (admin vs regular user).
+`Admin-Login-ejb`  is a Java EE-based EJB application for managing users. This JAR-only deployment approach focuses on EJB functionality, including user registration, login, and password management. The application leverages MySQL for data persistence and uses BCrypt for password hashing.
 
 ## Technologies Used
 
@@ -51,6 +51,18 @@
   private static String user = "your_username";
   private static String password = "your_password";
 ```
+
+3. Methods in EJB
+```Java
+    public void insertUser(String username, String email, String password) throws SQLException;
+    public boolean loginUser(String username, String password) throws SQLException;
+    public User findByUsername(String username) throws SQLException;
+    public User findByEmail(String email) throws SQLException;
+    public User extractUser(ResultSet rs) throws SQLException;
+    public void updateUser(String oldUsername, String newUsername, String newEmail, String newPassword) throws SQLException;
+    public void updatePassword(String username, String oldPassword, String newPassword) throws SQLException;
+```
+
 
 
 
